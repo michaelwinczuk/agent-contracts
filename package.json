@@ -1,0 +1,29 @@
+{
+  "name": "agent-contracts",
+  "version": "0.1.0",
+  "description": "Smart contracts for autonomous agent commerce",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "clean": "hardhat clean"
+  },
+  "keywords": [
+    "agents",
+    "ai",
+    "smart-contracts",
+    "escrow",
+    "micropayments"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@openzeppelin/contracts": "^5.4.0",
+    "hardhat": "^2.28.4"
+  },
+  "main": "hardhat.config.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "author": ""
+}
