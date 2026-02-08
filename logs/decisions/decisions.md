@@ -83,3 +83,39 @@
 - **Description:** Adopt conventional commit format (feat:, fix:, docs:, etc.) as project standard
 - **Rationale:** Clean git history; industry standard for changelogs and semantic versioning
 - **Status:** IMPLEMENTED
+
+---
+
+### DECISION-015
+- **Date:** 2025-06-27
+- **Mission Order:** MO-007 (Operation Blackbox)
+- **Decision:** Defer automated decision log tooling
+- **Rationale:** Manual heredoc process works. Automation adds complexity without proportional value at this stage.
+- **Status:** DEFERRED
+
+---
+
+### DECISION-016
+- **Date:** 2025-06-27
+- **Mission Order:** MO-007 (Operation Blackbox)
+- **Decision:** Create CURRENT_STATE.md as Brain recovery mechanism
+- **Rationale:** If a session dies, the state file plus Constitution plus Decision Log provide full context reconstruction for a new Brain instance.
+- **Status:** IMPLEMENTED
+
+---
+
+### DECISION-017
+- **Date:** 2025-06-27
+- **Mission Order:** MO-007 (Operation Blackbox)
+- **Decision:** Enforce branch protection on main
+- **Rationale:** All changes to main must go through PR with passing CI. No direct pushes. No bypasses.
+- **Status:** IMPLEMENTED
+
+---
+
+### DECISION-018
+- **Date:** 2025-06-27
+- **Mission Order:** MO-007 (Operation Blackbox)
+- **Decision:** CI pipeline verified operational via PR #1
+- **Rationale:** GitHub Actions runs forge build and forge test on PR. Confirmed passing.
+- **Status:** IMPLEMENTED
