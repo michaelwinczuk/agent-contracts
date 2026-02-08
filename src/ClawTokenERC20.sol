@@ -40,10 +40,10 @@ contract ClawTokenERC20 is ERC20 {
 
     /// @notice Defines a time-bounded, spend-capped session for an agent
     struct Session {
-        uint256 spendLimit;    // Max tokens agent can transfer in this session
-        uint256 spent;         // Tokens already spent in this session
-        uint256 expiry;        // Unix timestamp when session expires
-        bool active;           // Whether session is currently active
+        uint256 spendLimit; // Max tokens agent can transfer in this session
+        uint256 spent; // Tokens already spent in this session
+        uint256 expiry; // Unix timestamp when session expires
+        bool active; // Whether session is currently active
     }
 
     /*//////////////////////////////////////////////////////////////
@@ -81,11 +81,7 @@ contract ClawTokenERC20 is ERC20 {
     /// @param name_ Token name
     /// @param symbol_ Token symbol
     /// @param totalSupply_ Total supply (in wei, 18 decimals)
-    constructor(
-        string memory name_,
-        string memory symbol_,
-        uint256 totalSupply_
-    ) {
+    constructor(string memory name_, string memory symbol_, uint256 totalSupply_) {
         if (totalSupply_ == 0) revert InvalidAmount();
         owner = msg.sender;
         _name = name_;
@@ -133,21 +129,12 @@ contract ClawTokenERC20 is ERC20 {
     /// @param agent Agent address (must be registered operator)
     /// @param spendLimit Max tokens the agent can spend during session
     /// @param duration Session duration in seconds
-    function grantSession(
-        address agent,
-        uint256 spendLimit,
-        uint256 duration
-    ) external onlyOwner {
+    function grantSession(address agent, uint256 spendLimit, uint256 duration) external onlyOwner {
         if (!isOperator[agent]) revert Unauthorized();
         if (spendLimit == 0) revert InvalidAmount();
         if (sessions[agent].active) revert SessionAlreadyActive();
 
-        sessions[agent] = Session({
-            spendLimit: spendLimit,
-            spent: 0,
-            expiry: block.timestamp + duration,
-            active: true
-        });
+        sessions[agent] = Session({spendLimit: spendLimit, spent: 0, expiry: block.timestamp + duration, active: true});
 
         emit SessionGranted(agent, spendLimit, block.timestamp + duration);
     }
@@ -175,7 +162,7 @@ contract ClawTokenERC20 is ERC20 {
     /// @param amount Amount to transfer
     function agentTransfer(address to, uint256 amount) external whenNotPaused {
         if (frozenAgents[msg.sender]) revert AgentFrozen();
-        
+
         Session storage session = sessions[msg.sender];
         if (!session.active) revert NoActiveSession();
         if (block.timestamp > session.expiry) revert SessionExpired();
