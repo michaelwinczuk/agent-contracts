@@ -1,6 +1,30 @@
-node_modules/
+# ========================
+# OpenClaw v2.0 .gitignore
+# ========================
+
+# --- Foundry ---
+out/
 cache/
-artifacts/
-typechain-types/
-coverage/
+broadcast/
+
+# --- Dependencies ---
+node_modules/
+lib/
+
+# --- Environment / Secrets ---
 .env
+.env.*
+!.env.example
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Misc ---
+*.log
